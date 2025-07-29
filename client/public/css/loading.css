@@ -1,0 +1,9 @@
+.loading-container{
+    height: 70vh;
+    position: relative;
+  }
+
+.loading-image{
+height: 100px;
+position: absolute;
+}

@@ -1,0 +1,60 @@
+<h2 class="error" id="error"></h2>
+
+  <h1 class="page-title"> Estatísticas de <%= username %></h1>
+
+  <div class="col-md-12 box player-statistics">
+    <div class="light-blue-box-background">
+      <div class="d-flex align-items-center justify-content-between blue-box">
+        <a class="text-decoration-none text-reset" 
+           href="/profile/<%= username %>"
+           title="Visitar o perfil de <%= username %>">
+          <div
+            id="id-title"
+            class="white-title"
+          >
+          <%= username %>
+          </div>
+        </a>
+
+        <section class="btn-sm mx-2 alternar-botoes alternar-botoes-box">
+          <button class="active">
+            <h5 class="text-center fw-semibold">Lista</h5>
+          </button>
+          <button>
+            <h5 class="text-center">Gráfico</h5>
+          </button>
+        </section>
+      </div>
+
+      <div class="box-content">
+        <div id="list-1">
+          <ol>
+            <% Object.entries(stats).forEach(function([key, value]) { %>
+
+              <li class="white-box no-border-white-box justify-content-between">
+              <span class="text-overflow me-4"> <%= key %></span>
+              <span> <%= value %> </span>
+            </li>
+
+            <% }); %>
+            
+
+          </ol>
+        </div>
+
+        <div class="graph" id="graph-1" style="display: none">
+          <canvas id="statsChart" ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/rankings.js"></script>
+<script src="/js/button.js"></script>

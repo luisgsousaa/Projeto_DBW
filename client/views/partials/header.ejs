@@ -1,0 +1,82 @@
+<head>
+  <link href="/css/side-menu.css" rel="stylesheet" />
+  <link href="/css/header.css" rel="stylesheet" />
+</head>
+
+<div class="container-fluid mb-5">
+  <div class="row d-flex align-items-center header">
+    <div class="col-auto">
+      <a href="/">
+        <img
+          class="logo"
+          src="/images/logo.png"
+          alt="Website Logo"
+          title="Voltar à página inicial"
+        />
+      </a>
+    </div>
+
+    <div class="col-auto ms-0 d-none d-sm-block">
+      <h1 class="mb-0"><b>SEMPRE</b> A SOMAR</h1>
+    </div>
+
+    <div class="col-auto ms-auto d-flex align-items-center gap-4">
+      <% if (user) { %>
+      <a href="/profile/<%= user.username%>">
+        <img
+          class="profile"
+          src="/images/account-circle.png"
+          alt="Perfil"
+          title="Visite o seu perfil"
+        />
+      </a>
+
+      <% } else { %>
+      <a href="/login">
+        <img
+          class="profile"
+          src="/images/account-circle.png"
+          alt="Login"
+          title="Faça o login ou registe-se"
+        />
+      </a>
+
+      <% } %>
+
+      <!-- Menu -->
+      <div class="resize-60px-black clicable">
+        <i class="bx bx-menu" id="menu-button" onclick="toggleMenu()"></i>
+      </div>
+      <div class="overlay" onclick="toggleMenu()"></div>
+      <div class="side-menu text-center justify-content-between">
+        <div class="mt-5">
+          <!-- <a class="item mt-5 mb-5" href="/"><b>Página Inicial</b></a>-->
+          <a class="item mb-5" href="/last-games"><b>Últimos Jogos</b></a>
+          <a class="item mb-5" href="/rankings"><b>Rankings</b></a>
+          <a class="item mb-5" href="/ai-chat"><b>AI Chat</b></a>
+          <a class="item mb-5" href="/how-to-play"><b>Como Jogar</b></a>
+          <a class="item mb-0" href="/about-us"><b>Sobre Nós</b></a>
+        </div>
+
+        <div class="mb-4">
+          <% if (user) { %>
+          <button
+            class="black-button mt-5"
+            onclick="window.location.href='/logout';"
+          >
+            Terminar Sessão
+          </button>
+          <% } else { %>
+          <button
+            class="black-button mt-5"
+            onclick="window.location.href='/login';"
+          >
+            Iniciar Sessão
+          </button>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/header.js"></script>

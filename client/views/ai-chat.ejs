@@ -1,0 +1,44 @@
+<head>
+  <link href="/css/waiting-room.css" rel="stylesheet" />
+  <link href="/css/ai-chat.css" rel="stylesheet" />
+</head>
+
+<body style="background-color: #dcf3ff">
+  <div class="mt-0">
+    <div class="box-content">
+      <div class="white-box-background flex-fill">
+        <div class="blue-box">
+          <div class="h1 fw-semibold text-white">UMA-AI&reg;</div>
+        </div>
+        <div class="box-content">
+          <div class="chat-box">
+            <div class="grabbing-scroll-container">
+              <div class="scroll-box">
+                <ol class="messages" id="chatMessages"></ol>
+              </div>
+            </div>
+            <br />
+            <input
+              class="white-box mb-4"
+              type="text"
+              id="userInput"
+              onkeydown="enter_chat(event)"
+              placeholder="Escreve uma mensagem..."
+            />
+            <button class="small-black-button" onclick="sendMessage()">
+              Enviar
+            </button>
+            <button
+              class="small-black-button"
+              style="margin-left: 10px"
+              onclick="resetChat()"
+            >
+              Nova Conversa
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/aichat.js"></script>
+</body>

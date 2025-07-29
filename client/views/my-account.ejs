@@ -1,0 +1,355 @@
+<head>
+  <link href="/css/my-account.css" rel="stylesheet" />
+</head>
+
+<div class="page-title">Minha conta</div>
+
+<!-- no futuro aqui deve aparecer o email atual do utilizador ja no campo de texto quando for dinamico (o mesmo se aplica para outras coisas aqui tipo bio, username, localizacao, imagem perfil etc)-->
+<div class="container">
+  <!--username-->
+  <div class="gray-box-background mb-4 username-section">
+    <form
+      method="POST"
+      action="/my-account/username/<%=user_profile._id%>?_method=PATCH"
+      id="username-form"
+    >
+      <div class="final-text pb-3 pt-3">
+        <p id="error_username" class="warning-message">
+          <% if (error === 'username-em-uso') { %> O username que inseriu já
+          está a ser usado. <% } %>
+        </p>
+
+        <% if (success === 'username') { %>
+        <p class="success-message">Nome de utilizador alterado com sucesso!</p>
+        <% } %>
+
+        <label class="mb-3" for="nome"
+          ><h5 class="fw-semibold">Nome de utilizador</h5></label
+        >
+        <input
+          type="text"
+          class="white-box"
+          id="nome"
+          name="username"
+          maxlength="15"
+          value="<%= user_profile.username %>"
+        />
+        <div class="row text-end px-0 mx-0">
+          <small class="text-secondary px-0" id="charCountNome"></small>
+        </div>
+        <div class="d-flex justify-content-end pt-1">
+          <button
+            class="small-black-button"
+            type="submit"
+            style="display: none"
+            id="guardar-username"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--biografia-->
+  <form
+    method="POST"
+    action="/my-account/bio/<%=user_profile._id%>?_method=PATCH"
+    id="bio-form"
+  >
+    <div class="gray-box-background mb-4">
+      <div class="final-text pb-3 pt-3">
+        <% if (success === 'bio') { %>
+        <p class="success-message">Biografia alterada com sucesso!</p>
+        <% } %>
+
+        <label class="mb-3" for="bio"
+          ><h5 class="fw-semibold">Biografia</h5></label
+        >
+        <textarea
+          class="white-box bio"
+          id="bio"
+          maxlength="300"
+          oninput="autoResize(this) "
+          name="bio"
+        >
+<%= user_profile.bio %>
+      </textarea
+        >
+        <div class="row text-end px-0 mx-0">
+          <small class="text-secondary px-0" id="charCount"></small>
+        </div>
+        <div class="d-flex justify-content-end pt-1">
+          <button
+            class="small-black-button"
+            type="submit"
+            style="display: none"
+            id="guardar-bio"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!--foto de perfil-->
+  <div class="gray-box-background mb-4 d-flex text-start">
+    <div
+      class="final-text pb-0 pt-3 w-100 d-flex d-sm-flex align-items-center justify-content-between flex-wrap"
+    >
+      <label class="mb-3 mb-sm-0"
+        ><h5 class="fw-semibold me-3">Foto de perfil</h5></label
+      >
+
+      <div class="d-flex align-items-center flex-wrap gap-3">
+        <% if (user_profile.profile_picture !== '') { %>
+
+        <form
+          method="POST"
+          action="/my-account/fotos/<%=user_profile._id%>?_method=PATCH&action=remove_profile_pic"
+        >
+          <button
+            type="submit"
+            class="btn p-0 border-0 bg-transparent"
+            title="Remover foto de perfil"
+          >
+            <i class="bx bx-trash remove_picture"></i>
+          </button>
+        </form>
+        <% } %>
+
+        <input
+          type="file"
+          class="d-none"
+          id="profilePicInput"
+          accept="image/*"
+        />
+        <img
+          src="<%= user_profile.profile_picture !== '' ? user_profile.profile_picture : '/images/default_user_pic.jpg' %>"
+          class="img-fluid"
+          id="profilePicPreview"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- wallpaper -->
+  <div class="gray-box-background mb-4 d-flex text-start">
+    <div
+      class="final-text pb-0 pt-3 w-100 d-flex d-sm-flex align-items-center justify-content-between flex-wrap"
+    >
+      <label class="mb-3 mb-sm-0">
+        <h5 class="fw-semibold me-3">Wallpaper</h5>
+      </label>
+
+      <div class="d-flex align-items-center flex-wrap gap-3">
+        <% if (user_profile.profile_wallpaper !== '') { %>
+        <form
+          method="POST"
+          action="/my-account/fotos/<%=user_profile._id%>?_method=PATCH&action=remove_wallpaper_pic"
+          id="wallpaper-form"
+        >
+          <button
+            type="submit"
+            class="btn p-0 border-0 bg-transparent"
+            title="Remover wallpaper"
+          >
+            <i class="bx bx-trash remove_picture"></i>
+          </button>
+        </form>
+        <% } %>
+        <input
+          type="file"
+          class="d-none"
+          id="profileWallInput"
+          accept="image/*"
+        />
+        <img
+          src="<%= user_profile.profile_wallpaper !== '' ? user_profile.profile_wallpaper : '/images/fundo.png' %>"
+          class="img-fluid"
+          id="profileWallPreview"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!--localizacao que usa api para selecionar regiao e concelho-->
+  <form
+    method="POST"
+    action="/my-account/location/<%=user_profile._id%>?_method=PATCH"
+    id="location-form"
+  >
+    <div class="gray-box-background mb-4">
+      <div class="final-text pb-3 pt-3 location">
+        <% if (success === 'location') { %>
+        <p class="success-message">Localização alterada com sucesso!</p>
+        <% } %>
+        <label class="mb-3"><h5 class="fw-semibold">Localização</h5></label>
+          
+        <select id="regiao" name="region" class="white-box">
+          <option value="">Selecione a região</option>
+        </select>
+        
+             
+                 
+      </div>
+
+      <div class="d-flex justify-content-end pt-1 pa-0 pb-3 me-5">
+        <button
+          class="small-black-button"
+          type="submit"
+          id="guardar-location"
+          style="display: none"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+<!--
+
+
+<select id="concelho" name="concelho" class="white-box" data-current-city="<%= user_profile.city %>">
+          <option value="">Selecione o concelho</option>
+        </select>    
+
+        <input
+          type="text"
+          class="white-box"
+          placeholder="Região"
+          name="region"
+          value="<%= user_profile.region%>"
+        />
+        <input
+          type="text"
+          class="white-box"
+          placeholder="Cidade"
+          name="city"
+          value="<%= user_profile.city%>"
+        />-->
+
+  <!-- <div class="gray-box-background mb-4">
+    <div class="final-text pb-3 pt-3">
+      <label class="mb-3"><h5 class="fw-semibold">Localização</h5></label>
+      <select class="text-overflow form-select mb-2">
+        <option selected>Portugal</option>
+      </select>
+      <select class="text-overflow form-select mb-2">
+        <option selected>Madeira</option>
+      </select>
+      <select class="text-overflow form-select">
+        <option selected>Indique a sua cidade</option>
+      </select>
+    </div>
+  </div> -->
+
+  <!--email-->
+
+  <form
+    method="POST"
+    action="/my-account/email/<%=user_profile._id%>?_method=PATCH"
+    id="email-form"
+  >
+    <div class="gray-box-background mb-4 email-section">
+      <p id="error_email" class="warning-message pt-4 mb-0">
+        <% if (error === 'email-em-uso') { %> O email que inseriu já está a ser
+        usado. <% } %>
+      </p>
+
+      <% if (success === 'email') { %>
+      <p class="success-message">Email alterado com sucesso!</p>
+      <% } %>
+
+      <div class="final-text pb-3">
+        <label class="mb-3" for="email"
+          ><h5 class="fw-semibold">Email</h5></label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="white-box"
+          value="<%= user.email%>"
+        />
+      </div>
+      <div class="d-flex justify-content-end pt-1 pa-0 pb-3 me-5">
+        <button
+          class="small-black-button"
+          type="submit"
+          style="display: none"
+          id="guardar-email"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!--password-->
+  <form
+    method="POST"
+    action="/my-account/password/<%=user_profile._id%>?_method=PATCH"
+    id="password-form"
+  >
+    <div class="gray-box-background mb-4">
+      <p id="error_password" class="warning-message pt-4 mb-0">
+        <% if (error === 'password-errada') { %> A palavra-passe atual está
+        errada <% } %>
+      </p>
+
+      <% if (success === 'palavra-passe') { %>
+      <p class="success-message">Palavra-passe alterada com sucesso!</p>
+      <% } %>
+
+      <div class="final-text pb-3 pt-3">
+        <label class="mb-3" for="current-password"
+          ><h5 class="fw-semibold">Palavra-passe</h5></label
+        >
+        <input
+          type="password"
+          class="white-box mb-2"
+          id="current-password"
+          name="current_password"
+          placeholder="Insira a palavra-passe atual"
+          required
+        />
+
+        <input
+          type="password"
+          class="white-box mb-2"
+          id="new-password"
+          name="new_password"
+          placeholder="Insira a sua nova palavra-passe"
+          required
+        />
+        <label class="m-0 d-flex align-items-center">
+          <input type="checkbox" id="show_pass_change" class="me-2" />
+          <h6>Mostrar palavra-passes</h6>
+        </label>
+      </div>
+      <div class="d-flex justify-content-end pt-1 pa-0 pb-3 me-5">
+        <button
+          class="small-black-button"
+          type="submit"
+          id="guardar-password"
+          style="display: none"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="d-flex justify-content-end align-items-center mt-3">
+    <a
+      href="/profile/<%= user_profile.username %>"
+      class="text-dark h5 mb-0 me-4 fw-semibold"
+      ><h5 class="text-end">Voltar para o perfil</h5></a
+    >
+  </div>
+</div>
+
+
+<script src="/js/my-account.js"></script>
+<script src="/js/geo-select.js"></script>

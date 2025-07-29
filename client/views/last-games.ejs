@@ -1,0 +1,123 @@
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+
+
+
+
+<!-- verifica se está vazio -->
+<% if (played && played.length > 0) { %> 
+  <div class="page-title">Últimos jogos</div>
+    <!-- percorre todos os jogos -->
+    <% played.forEach((game, index) => { %>
+      <!-- se não está terminado não aparece -->
+      <% if (!game.finished) return; %>
+
+      <!-- cabeçalho -->
+    <div class="col-md-12 mb-5">
+    <div class="light-blue-box-background p-4">
+      <div class="mb-4 ms-2">
+        <h4><b>Tema:</b> <%= game.theme %> </h4>
+        <h4><b>Data:</b> 
+          <% const date = new Date(game.timestamp);
+                const formattedDate = date.toLocaleString('pt-BR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: false
+                }).replace(',', ' às');
+              %>
+              <%= formattedDate %>
+        </h4>
+      </div>
+
+
+
+
+
+
+      <!-- percorre o array de players -->
+      <% game.players.forEach((player, index) => { %>
+      <div
+        class="light-blue-box-background bg-white align-items-center hidden p-0 mb-3"
+        id="box"
+      >
+        <div class="blue-box white-title justify-content-between">
+          <a
+            href="/profile/<%= player.username %>"
+            target="_blank"
+            class="text-decoration-none text-white"
+          >
+            <div
+              class="text-overflow me-2"
+              title="Visitar o perfil de <%= player.username %>"
+            >
+              <%= index + 1 %> º <%= player.username %> 
+              
+              
+              <%- index === 0 ? "&#129351;" :
+                  index === 1 ? "&#129352;" :
+                  index === 2 ? "&#129353;" : 
+                  "" 
+              %>
+
+
+
+
+
+              <% index++ %>
+            </div>
+          </a>
+
+          <span class="d-flex align-items-center">
+            <span
+              class="ms-md-4 ms-3 triangle"
+              onclick="toggleBox(this)"
+            ></span>
+          </span>
+        </div>
+
+        <div class="box-content final-text box-info pb-4">
+          <h5 class="mb-1">
+
+            <% if (player.words.length != 0){%> 
+              <b>Palavras:</b> 
+              
+              <% player.words.forEach((word, index) => { %>
+                  <%= word %>
+                <% }); %>
+                
+            <% }else{ %>
+                Este texto foi criado apenas com a inteligência artificial:
+            <% } %>
+
+          </h5>
+          <%= player.text %>
+        </div>
+      </div>
+
+      <% }); %>
+    </div>
+  </div>
+  <% }); %>
+      
+<% } else { %>
+ <div class="page-title">Sem registos de Jogos</div>
+<% } %>
+
+
+
+
+</div>
+
+<script src="/js/show-hide-content.js"></script>

@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row lg-4 pt-4 g-5 d-flex align-items-stretch">
+        <div class="pt-3 align-items-center">
+            <div class="d-flex flex-column flex-row align-items-center justify-content-between mb-4">
+                <!-- Ícone Esquerda 
+                <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
+                    <i class="bx bx-group resize-60px-black"></i>
+                </div>-->
+
+                <!-- Título no Meio -->
+                <div class="col-12 col-md-4 text-center">
+                    <div class="mb-4 mt-0 page-title mb-md-3">Tema: </div>
+                </div>
+
+                <!-- Temporizador Direita -->
+                <div id="generic-countdown" class="col-12 col-md-4 d-flex justify-content-center justify-content-center align-items-center gap-2" style="display:none;">
+                    <i class="bx bx-timer resize-60px-black"></i>
+                    <h1 class="mb-0" id="countdown"></h1>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h4 class="fw-semibold mb-4 text-start ps-0 text-center">
+                Insira o máximo de palavras que conseguir:
+            </h4>
+            <textarea  class="form-palavras white-box" maxlength="50" title="Campo para inserir palavras uma de cada vez" id="palavras" onkeydown="checkEnter(event)" ></textarea>
+            
+
+        </div>
+
+        <div class="d-flex align-items-center pt-4">
+            <hr class="flex-grow-1" />
+            <h4 class="mx-4 fw-semibold">Palavras Inseridas</h4>
+            <hr class="flex-grow-1" />
+        </div>
+
+        <div>
+            <div class="light-blue-box-background p-3">
+                <div class="d-flex align-items-start grabbing-scroll-container palavras-inseridas justify-content-center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="/css/brainstorming.css" rel="stylesheet" />
+<script src="/js/brainstorming.js"></script>
+<script src="/js/grabbing-scroll.js"></script>
+

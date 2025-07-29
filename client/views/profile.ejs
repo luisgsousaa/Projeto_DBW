@@ -1,0 +1,286 @@
+<head>
+  <link href="/css/profile.css" rel="stylesheet" />
+</head>
+
+<img
+  src="<%= profile_data.profile_wallpaper !== '' ? profile_data.profile_wallpaper : '/images/fundo.png' %>"
+  class="background-image"
+/>
+
+<div class="container mt-4">
+  <div class="row">
+    <!-- caixa principal -->
+    <div class="col-xl-8 col-12 gray-box-background p-sm-5 p-4">
+      <div
+        class="d-flex flex-column flex-lg-row justify-content-between align-items-start"
+      >
+        <!-- Caixa grande foto perfil, username, localizacao e bio -->
+        <div
+          class="d-flex flex-column flex-lg-row align-items-center align-items-lg-start col-12 col-lg-8 mb-1 mb-lg-0 text-center text-lg-start"
+        >
+          <img
+            src="<%= profile_data.profile_picture !== '' ? profile_data.profile_picture : '/images/default_user_pic.jpg' %>"
+            alt="Foto de Perfil"
+            class="big-user-image img-fluid"
+          />
+          <div class="ms-0 ms-lg-2 mt-3 mt-lg-0">
+            <h3 class="mb-1"><%= profile_data.username %></h3>
+            <span> &#x1F1F5;&#x1F1F9;
+              <% if (profile_data.region) { %>
+                <%= profile_data.region %>
+              <% } %>
+<!--              
+              <% const locationParts = [profile_data.city, profile_data.region,
+              profile_data.country].filter(Boolean).join(", "); %> <%=
+              locationParts %>-->
+            </span>
+            <p class="mt-3 break-text ms-md-5 ms-lg-0 me-md-5 me-lg-0">
+              <%= profile_data.bio %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Caixa nível e botão que vai para a página de editar dados da conta -->
+        <div class="col-12 col-lg-4 text-center text-lg-end">
+          <div
+            class="d-flex justify-content-center justify-content-lg-end align-items-center mb-3"
+          >
+            <h4 class="fw-semibold mb-0">Nível</h4>
+            <h4 class="level-circle mb-0 ms-2"><%= profile_data.level%></h4>
+          </div>
+
+          <% if (user.username === profile_data.username) { %>
+          <button
+            class="small-black-button"
+            onclick="window.location.href='/my-account';"
+          >
+            Minha conta
+          </button>
+
+          <% } %>
+        </div>
+      </div>
+
+      <!-- caixa atividade -->
+      <div
+        class="blue-box white-title mt-5 d-flex flex-column flex-md-row justify-content-between text-center text-md-start align-items-center"
+      >
+        <div class="col-12 col-md-4">Atividade</div>
+      </div>
+
+      <!-- total horas jogo sempre a somar e ultima vez jogado -->
+      <div>
+        <div
+          class="blue-box text-white mt-3 d-flex flex-column flex-lg-row justify-content-between align-items-end"
+        >
+          <div
+            class="d-flex flex-column flex-lg-row align-items-lg-start text-start col-12 col-lg-6"
+          >
+            <div class="col-xxl-7 col-xl-8 col-lg-6">
+              <img
+                class="game-profile mb-lg-0 mb-2"
+                src="/images/game-banner.png"
+              />
+            </div>
+            <div class="col-xxl-5 col-xl-4 col-lg-6">
+              <b>Sempre a Somar</b>
+            </div>
+          </div>
+          <div class="d-flex flex-column text-end col-12 col-lg-6 mt-3 mt-lg-0">
+            <b><%= stats.games_played %> jogos no total</b><br />
+            <% if(stats.games_played !== 0){ %>
+            <b
+              >Jogado pela última vez a <%= new Intl.DateTimeFormat('pt-PT', {
+              day: 'numeric', month: 'long' }).format(new
+              Date(profile_data.last_seen)) %>
+            </b>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- caixa comentarios -->
+      <div class="light-blue-box-background" style="margin-top: 130px">
+        <div class="blue-box white-title">Comentários</div>
+        <div class="box-content">
+          <!-- caixa de fazer um comentario-->
+          <form
+            class="flex items-center gap-2 w-full comment-section"
+            method="POST"
+            action="/profile/write-comment/<%=profile_data._id%>?_method=PATCH"
+          >
+            <div class="d-flex align-items-center make-comment-box">
+              <img
+                src="<%= visiting_user_profile.profile_picture !== '' ? visiting_user_profile.profile_picture : '/images/default_user_pic.jpg' %>"
+                class="small-user-image"
+              />
+
+              <input
+                class="white-box mb-0"
+                type="text"
+                placeholder="Escreva um comentário..."
+                name="new_comment"
+                id="comment"
+                required
+              />
+              <button type="submit" class="p-0 border-none bg-transparent">
+                <img class="profile" src="/images/enviar.png" alt="Enviar" />
+              </button>
+            </div>
+          </form>
+          <!-- comentarios ja feitos-->
+          <ul class="list-unstyled mt-3 comment-box" id="comments">
+            <% profile_data.comments.reverse().forEach(function(comment) { %>
+
+            <li class="pb-2 mb-2">
+              <div class="d-flex align-items-start">
+                <a href="<%= comment.user_profile.username %>"
+                   title="Visitar o perfil de <%= comment.user_profile.username %>">
+                  <img
+                    src="<%= comment.user_profile.profile_picture !== '' ? comment.user_profile.profile_picture : '/images/default_user_pic.jpg' %>"
+                    alt="Foto de Perfil"
+                    class="small-user-image"
+                  />
+                </a>
+
+                <div class="ms-2">
+                  <form
+                    method="POST"
+                    action="/profile/delete-comment/<%=profile_data._id%>?_method=PATCH"
+                  >
+                    <div class="break-text">
+                      <a class="text-decoration-none text-reset" href="<%= comment.user_profile.username %>"
+                         title="Visitar o perfil de <%= comment.user_profile.username %>">
+                        
+                         <b><%= comment.user_profile.username %></b>
+                      
+                      </a>
+                      
+
+                      <span class="ms-2 text-muted">
+                        <%= new Intl.DateTimeFormat('pt-PT', { day: 'numeric',
+                        month: 'long', year: 'numeric' }).format(new
+                        Date(comment.createdAt)) %> @ <%= new
+                        Intl.DateTimeFormat('pt-PT', { hour: 'numeric', minute:
+                        'numeric'}).format(new Date(comment.createdAt)) %> <%
+                        if(visiting_user_profile._id.toString() ===
+                        comment.user_profile._id.toString() ||
+                        user.username.toString() ===
+                        profile_data.username.toString()) { %>
+                        <input
+                          type="hidden"
+                          name="comment_id"
+                          value="<%= comment._id %>"
+                        />
+                        <button type="submit">
+                          <i class="bx bxs-trash"></i>
+                        </button>
+                        <% } %>
+                      </span>
+
+                      <br />
+                      <span> <%= comment.text %> </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </li>
+
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- caixa lateral -->
+    <div class="col-xl-4 col-12 ps-xl-3 p-0">
+      <!-- caixa last played -->
+      <div class="gray-box-background p-4 mt-xl-0 mt-3 mb-3">
+        <h5>
+          &#127918; Membro desde <%= new Intl.DateTimeFormat('pt-PT', { day:
+          'numeric', month: 'long', year: 'numeric' }).format(new
+          Date(profile_data.createdAt)) %>
+        </h5>
+      </div>
+
+      <!-- caixa seguir e estatísticas -->
+      <div class="gray-box-background d-flex flex-column p-4 mb-3">
+        <% if (user.username !== profile_data.username) { %> <%
+        if(!isFollowing){ %>
+        <form
+          method="POST"
+          action="/profile/follow-player/<%=profile_data._id%>?_method=PATCH&"
+        >
+          <button type="submit">
+            <h4 class="mb-3 fw-semibold">Seguir jogador</h4>
+          </button>
+        </form>
+
+        <% }else{ %>
+        <form
+          method="POST"
+          action="/profile/unfollow-player/<%=profile_data._id%>?_method=PATCH&"
+        >
+          <button type="submit">
+            <h4 class="mb-3 fw-semibold">Deixar de Seguir jogador</h4>
+          </button>
+        </form>
+
+        <% } %> <% } %>
+
+        <a
+          href="/estatisticas/<%= profile_data.username %>"
+          style="text-decoration: none; color: inherit"
+        >
+          <h4 class="fw-semibold">Estatísticas</h4>
+        </a>
+      </div>
+
+      <!-- caixa a seguir -->
+      <div
+        class="gray-box-background p-4 d-flex align-items-start flex-column flex-grow-1"
+      >
+        <h4 class="mb-4 fw-semibold">A seguir</h4>
+
+        <ul class="list-unstyled following-box mb-2">
+          <% profile_data.following.forEach(function(followee) { %>
+
+          <li>
+            <div class="d-flex mb-2">
+              <a href=" <%= followee.user_profile.username %>" >
+                <img
+                src="<%= followee.user_profile.profile_picture !== '' ? followee.user_profile.profile_picture : '/images/default_user_pic.jpg' %>"
+                alt="Foto de Perfil"
+                class="small-user-image"
+                title="Visitar o perfil de <%= followee.user_profile.username %>"
+                />
+              </a>
+              
+
+              <div class="ms-2">
+                <a class="text-decoration-none text-reset" 
+                  href="<%= followee.user_profile.username %>"
+                  title="Visitar o perfil de <%= followee.user_profile.username %>">
+                  <b>            
+                    <%= followee.user_profile.username %>
+                  </b>
+                </a>
+                <br />
+
+                <span>
+                  Jogou pela última vez dia <%= new Intl.DateTimeFormat('pt-PT',
+                  { day: 'numeric', month: 'long', year: 'numeric' }).format(new
+                  Date(followee.user_profile.last_seen)) %>
+                </span>
+              </div>
+            </div>
+          </li>
+
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/profile.js"></script>

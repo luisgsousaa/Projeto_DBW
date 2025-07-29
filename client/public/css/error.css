@@ -1,0 +1,21 @@
+
+.error-message{
+    color: black;
+    justify-content: center;
+    display: flex;
+    font-size: 2em;
+}
+
+.align-error{
+
+    text-align: center;
+}
+
+.error-div{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30 vh;
+    text-align: center;
+}

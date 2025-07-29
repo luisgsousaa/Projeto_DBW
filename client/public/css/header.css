@@ -1,0 +1,23 @@
+.header {
+  padding: 9px;
+  text-align: left;
+  background: #18acfe;
+  color: black;
+  font-size: 30px;
+}
+
+header {
+  position: relative;
+  z-index: 10;
+}
+
+.profile {
+  width: 50px;
+  text-align: right;
+  z-index: 10;
+}
+
+.logo {
+  width: 70px;
+  padding-left: 10px;
+}

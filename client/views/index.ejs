@@ -1,0 +1,59 @@
+
+<% if (success === 'registo_sucesso') { %>
+    <p class="success-message">Registo efetuado com sucesso!</p>
+    <% } else if (success === 'login_sucesso') { %>
+        <p class="success-message">Login efetuado com sucesso!</p>
+        <% } %>
+
+            <div class="page-title">
+                <% if (user) { %>
+                    Bem vindo,
+                    <%= user.username %>!
+                        <% } else{%>
+                            Bem vindo!
+                            <% } %>
+            </div>
+
+
+            <div class="container">
+                <div class="row mb-4 g-5 d-flex align-items-stretch">
+                    <% for (const [label, players] of Object.entries(rankings)) { %>
+                        <div class="col-md-6 d-flex">
+                            <div class="light-blue-box-background flex-fill">
+                                <div class="blue-box white-title">
+                                    <a class="text-decoration-none text-reset" href="/rankings" title="Clique aqui para visitar a página dos Rankings">
+                                        <%= label %>
+                                    </a>
+                                </div>
+
+                                <div class="box-content">
+                                    <ol>
+                                        <% players.forEach(player => { %>
+                                            <li class="white-box no-border-white-box justify-content-between">
+                                                <span class="text-overflow me-4">
+                    <a class="text-decoration-none text-reset"
+                    href="profile/<%= player.username.split(' - ')[1] %>"
+                    title="Clique aqui para visitar o perfil de <%= player.username.split(' - ')[1] %>">
+                      <%= player.username %>
+                    </a>
+                  </span>
+                                                <span><%= player.value %></span>
+                                            </li>
+                                            <% }) %>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+
+
+                <!-- botao -->
+                <div class="row text-center">
+                    <div>
+                        <button class="black-button mt-5" onclick="window.location.href='/pre-game';">
+      Jogar
+      </button>
+                    </div>
+                </div>
+            </div>

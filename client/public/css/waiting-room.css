@@ -1,0 +1,127 @@
+.lista-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icone-perfil {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 30px;
+    border: 2px solid black;
+    flex-shrink: 0 !important;
+}
+
+.caixa-texto {
+    background-color: #e9e9e9;
+    border-radius: 15px;
+    padding: 5px 10px;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    border: 2px solid black;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.caixa-texto-right {
+    background-color: #dcf3ff;
+}
+
+
+/* largura mensagem adaptavel com tamanho dispositivo*/
+
+@media only screen and (max-width: 575px) {
+    .caixa-texto-right {
+        margin-left: 40px;
+    }
+    .caixa-texto-left {
+        margin-right: 40px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .caixa-texto-right {
+        margin-left: 120px;
+    }
+    .caixa-texto-left {
+        margin-right: 120px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .caixa-texto-right {
+        margin-left: 150px;
+    }
+    .caixa-texto-left {
+        margin-right: 150px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .caixa-texto-right {
+        margin-left: 180px;
+    }
+    .caixa-texto-left {
+        margin-right: 180px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .caixa-texto-right {
+        margin-left: 200px;
+    }
+    .caixa-texto-left {
+        margin-right: 200px;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .caixa-texto-right {
+        margin-left: 225px;
+    }
+    .caixa-texto-left {
+        margin-right: 225px;
+    }
+}
+
+.caixa-texto p {
+    margin: 0;
+    color: black;
+    font-size: 12px;
+}
+
+.caixa-texto b {
+    color: red;
+    font-size: 14px;
+}
+
+
+/* delimitador do scroll chat */
+
+.scroll-box {
+    height: 400px;
+}
+
+
+/* isto é para quando aparece coutndown,
+eu queria fazer la com bootstrap e isso, 
+mas havia conflitos ao usar flex entao ficou assim para
+de modo ao countdown ficar alinhado com o relogio*/
+
+#start-game-countdown {
+    white-space: nowrap;
+}
+
+#start-game-countdown i,
+#start-game-countdown h2 {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+#start-game-countdown h2 {
+    position: relative;
+    top: 3px;
+    line-height: normal;
+}

@@ -1,0 +1,201 @@
+
+<% if (warning === 'nao_autenticado') { %>
+  <p class="warning-message">A página que tentou aceder é apenas para utilizadores registados</p>
+<% } %>
+
+
+<h1 class="page-title">Bem-vindo!</h1>
+
+<div class="container col-xl-5 col-lg-6 col-md-8">
+  <div class="box">
+    <!-- Seção de Botões -->
+    <section class="alternar-botoes">
+      <button class="active">
+        <h5 class="text-center fw-semibold">Login</h5>
+      </button>
+      <button>
+        <h5 class="text-center">Registar</h5>
+      </button>
+    </section>
+
+    <!-- Seção de Conteúdo -->
+    <section class="box-content mt-5">
+      <!-- Seção Login -->
+      <div class="loginsection" style="display: block ">
+        <form method="post" action="login">
+          <div class="mb-4">
+            <p id="error_login"></p>
+            <h5 for="username" class="fw-semibold mb-3">Nome de Utilizador</h5>
+            <div class="input">
+              <input
+                class="white-box blue-border-white-box"
+                
+                id="username_login"                                                
+                name="username"
+                placeholder="Escreva o seu nome de utilizador"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <h5 for="password" class="fw-semibold mb-3">Palavra-passe</h5>
+            <div class="input">
+              <input
+                class="white-box blue-border-white-box"
+                type="password"
+                id="password_log"
+                name="password"
+                placeholder="Escreva a sua palavra-passe"
+                required
+                maxlength="128"
+              />
+            </div>
+          </div>
+          <div class="remember-forgot-password">
+            <div class="d-flex justify-content-between align-items-center">
+              <label class="m-0 d-flex align-items-center">
+                <input type="checkbox" id="show_pass_log" class="me-2" />
+                <h6>Mostrar palavra-passe</h6>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="blue-box blue-box-button text-white fw-semibold justify-content-center align-items-center mt-5 h5"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Seção Registar ------------------------------------------------------------------------------------------------------->
+      <div class="registersection" style="display: none ">
+        <form  method="post" action="registar">
+          <div id="username-field" class="input mb-4">
+            <p id="error_register"></p>
+            <h5 for="username" class="fw-semibold mb-3">Nome de utilizador</h5>
+            <div class="input">
+              <input
+                class="white-box blue-border-white-box"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Escreva o seu nome de utilizador"
+                required
+                maxlength="15"
+              />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h5 for="reg-email" class="fw-semibold mb-3">Email</h5>
+            <div class="input">
+              <input
+                class="white-box blue-border-white-box"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Escreva o seu email"
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+              />
+            </div>
+          </div>
+
+          <div>
+            <h5 for="reg-password" class="fw-semibold mb-3">Palavra-passe</h5>
+            <div class="input">
+              <input
+                class="white-box blue-border-white-box"
+                type="password"
+                id="password_reg"
+                name="password"
+                placeholder="Crie a sua palavra-passe"
+                required
+                maxlength="128"
+              />
+            </div>
+            <label class="m-0 d-flex align-items-center">
+                <input type="checkbox" id="show_pass_reg" class="me-2" />
+                <h6>Mostrar palavra-passe</h6>
+              </label>
+            
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="blue-box blue-box-button text-white fw-semibold justify-content-center align-items-center mt-5 h5"
+            >
+              Registar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!--
+<section class="container p-4 border rounded shadow">
+  <section class="alternar_botoes">
+    <button class="active" onclick="toggleForm('login')">Login</button>
+    <button onclick="toggleForm('registar')">Registar</button>
+  </section>
+
+  <section class="form-container">
+    <form method="post">
+      <div id="username-field" class="input" style="display: none">
+        <label for="username" class="ms-4">Nome de Utilizador</label>
+        <input
+          class="inpute"
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Escreva o seu nome de utilizador"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="ms-4">Email</label>
+        <div class="input">
+          <input
+            class="inpute"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Escreva o seu email"
+            required
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="password" class="ms-4">Palavra-passe</label>
+        <div class="input">
+          <input
+            class="inpute"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Escreva a sua palavra-passe"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="remember-me">
+        <label class><input type="checkbox" /> Lembrar-me</label>
+        <a id="esqp" href="#" class="ms-4">Esqueceu-se da palavra-passe?</a>
+      </div>
+
+      <button type="submit" class="login-button">Login</button>
+    </form>
+  </section>
+</section>-->
+
+<script src="/js/login.js"></script>
+<script src="/js/button.js"></script>

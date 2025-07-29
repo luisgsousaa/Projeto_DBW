@@ -1,0 +1,744 @@
+/*
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.player-welcome {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  text-align: center;
+}
+
+.home-analytics-row {
+  gap: 30px;
+}
+
+.home-analytics-box {
+  position: relative;
+  height: 400px;
+  background-color: #dcf3ff;
+  border-radius: 40px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.box-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #18acfe;
+  color: white;
+  font-size: 23px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  border-radius: 40px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.box-title.category {
+  padding-left: 30px;
+}
+
+.box-title p {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.box-title .alternar_botoes {
+  width: 200px;
+  height: 50px;
+}
+
+.container-personalizado {
+  max-width: 600px;
+  margin: auto;
+}
+
+.cartao {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.drop-down-arrow {
+  color: #737373;
+  font-size: 40px;
+  padding-right: 20px;
+  padding-left: 10px;
+  padding-top: 5px;
+  transition: transform 0.4s ease-in-out;
+}
+
+.small-drop-down-arrow {
+  color: #737373;
+  font-size: 25px;
+  padding-right: 20px;
+  padding-left: 10px;
+  padding-top: 5px;
+  transition: transform 0.4s ease-in-out;
+}
+
+.drop-down-arrow.open {
+  transform: scaleY(-1);
+  color: white;
+}
+
+.box-title .results-player-name {
+  padding-left: 10px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.submit-vote button {
+  margin: 7vh auto;
+  width: 300px;
+  height: 60px;
+  border-radius: 40px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: 30px;
+  display: block;
+  text-align: center;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+*/
+
+
+/* ------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------------------------------------------------------------------- */
+
+
+/* COISAS GERAIS */
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* espaço minimo para qualquer pagina, serve para garantir que o footer fique sempre no final da pagina e que nao de para ver a partida */
+
+.container {
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.clicable {
+    cursor: pointer;
+}
+
+input::placeholder {
+    color: #bbb;
+    font-style: italic;
+}
+
+input:focus {
+    border-color: #007acc;
+}
+
+.error {
+    text-align: center;
+    font-weight: bold;
+}
+
+textarea {
+    resize: none;
+}
+
+.option {
+    width: 190px;
+}
+
+.success-message {
+    color: green;
+    justify-content: center;
+    display: flex;
+    font-size: 20px;
+}
+
+.warning-message {
+    color: red;
+    justify-content: center;
+    display: flex;
+    font-size: 20px;
+}
+
+.initially-hidden {
+    display: none !important;
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* BOXES */
+
+.gray-box-background {
+    background: #d9d9d9;
+    border-radius: 30px;
+    text-align: left;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+/* fundo light blue para usar nas caixas */
+
+.light-blue-box-background {
+    position: relative;
+    background-color: #dcf3ff;
+    border-radius: 30px;
+    padding-bottom: clamp(8px, 5vw, 12px);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+/* fundo branco para usar nas caixas */
+
+.white-box-background {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding-bottom: clamp(10px, 5vw, 20px);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+/* deve ser usado após as classes anteriores se quisermos delimitar o conteudo das boxes */
+
+.box-content {
+    margin-top: 25px;
+    margin-left: clamp(10px, 5vw, 20px);
+    margin-right: clamp(10px, 5vw, 20px);
+}
+
+
+/* faixas azuis, normalmente headers de caixas com fundo light blue*/
+
+.blue-box {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    background-color: #18acfe;
+    display: flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.blue-box-button {
+    box-shadow: none;
+    height: 52px;
+}
+
+.blue-box-button:hover {
+    background: #0088e2;
+}
+
+
+/* faixas brancas com contorno preto, normalmente usadas inserir texto ou mostrar texto */
+
+.white-box {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    background-color: #ffffff;
+    display: flex;
+    padding-left: clamp(25px, 5vw, 30px) !important;
+    padding-right: clamp(25px, 5vw, 30px) !important;
+    padding-top: clamp(8px, 5vw, 13px);
+    padding-bottom: clamp(8px, 5vw, 13px);
+    margin-bottom: 17px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    border: 1.5px solid black;
+}
+
+
+/* para ser usado juntamente com a classe acima quando nao queremos que isto vá até ao fim da divisao e adaptar-se ao conteudo */
+
+.responsive-white-box {
+    width: auto;
+}
+
+
+/* white-box mas sem contorno e com sombra */
+
+.no-border-white-box {
+    border: none;
+    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.blue-border-white-box {
+    border: 1.5px solid #18acfe;
+}
+
+
+/* faixas cinzas, normalmente meter texto dentro*/
+
+.gray-box {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    background-color: #d9d9d9;
+    display: flex;
+    padding-left: clamp(25px, 5vw, 30px) !important;
+    padding-right: clamp(25px, 5vw, 30px) !important;
+    padding-top: clamp(8px, 5vw, 13px);
+    padding-bottom: clamp(8px, 5vw, 13px);
+    margin-bottom: 17px;
+    border-radius: 30px;
+    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+/* usado no pre jogo para alinhar */
+
+.invisible-box {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    display: flex;
+    padding-left: clamp(25px, 5vw, 30px) !important;
+    padding-right: clamp(25px, 5vw, 30px) !important;
+    box-sizing: border-box;
+}
+
+
+/* margens adicionais para quando só se usa texto na box */
+
+.final-text {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 17px;
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* TITULOS */
+
+
+/* título principal de todas as páginas */
+
+.page-title {
+    margin-top: 4vh;
+    margin-bottom: 11vh;
+    text-align: center;
+    font-weight: bold;
+    font-size: clamp(35px, 6vw, 45px);
+}
+
+
+/* titulo branco normalmente usado nas faixas */
+
+.white-title {
+    color: white;
+    font-size: clamp(20px, 3vw, 25px);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+
+/* subtitulo branco normalmente usado nas faixas */
+
+.white-subtitle {
+    color: white;
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* TEXTO */
+
+
+/* se tiver muito texto fica reticencias */
+
+.text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* cor azul para identificar subtitulos */
+
+.color-blue-subtitle {
+    color: #43c0ff;
+}
+
+
+/* para evita que o texto va sempre pa frente */
+
+.break-text {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-right: 30px;
+    hyphens: auto !important;
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* BOTOES */
+
+
+/* este é o botao preto principal */
+
+.black-button {
+    height: clamp(50px, 3vw, 60px);
+    border-radius: 30px;
+    padding-left: clamp(35px, 3vw, 40px);
+    padding-right: clamp(35px, 3vw, 40px);
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: clamp(20px, 3vw, 25px);
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* este é o botao preto secundario (mais pequeno) */
+
+.small-black-button {
+    height: clamp(43px, 5vw, 50px);
+    border-radius: 30px;
+    padding-left: clamp(20px, 5vw, 25px);
+    padding-right: clamp(20px, 5vw, 25px);
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: clamp(15px, 5vw, 20px);
+    display: inline-block;
+    text-align: center;
+}
+
+.black-button:hover,
+.small-black-button:hover {
+    background-color: #444;
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* OVERRIDES */
+
+button {
+    all: unset;
+    cursor: pointer;
+}
+
+h4 {
+    font-size: clamp(20px, 3vw, 25px) !important;
+    margin-left: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+h5 {
+    font-size: clamp(15px, 3vw, 20px) !important;
+    margin-bottom: 0px !important;
+}
+
+h6 {
+    font-size: clamp(12px, 3vw, 16px) !important;
+    margin-bottom: 0px !important;
+}
+
+option {
+    padding-right: 0px;
+}
+
+ol,
+li {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    list-style: none !important;
+}
+
+select {
+    border-radius: 30px !important;
+    border: 1.5px solid black !important;
+    padding-left: clamp(25px, 5vw, 30px) !important;
+    padding-right: clamp(25px, 5vw, 30px) !important;
+    cursor: pointer;
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* SCROLL */
+
+
+/* fazer scroll com grab */
+
+.grabbing-scroll-container {
+    overflow: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    /* esconder scroll IE Edge */
+    scrollbar-width: none;
+    /* esconder scroll Firefox */
+    cursor: grab;
+}
+
+
+/* fazer scroll com grab */
+
+.grabbing-scroll-container::-webkit-scrollbar {
+    display: none;
+    /* esconder scroll Chrome Safari Edge */
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* IMAGENS */
+
+
+/* redimensiona a imagem para 200x200 */
+
+.resize-200 {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/* redimensiona a imagem para 200x300 */
+
+.resize-300-200 {
+    width: 300px;
+    height: 200px;
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+
+/* redimensiona imagem e adiciona borda, para usar em chats etc */
+
+.small-user-image {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 100% !important;
+    object-fit: cover !important;
+    margin-right: 10px !important;
+    border: 3px solid #18acfe !important;
+    flex-shrink: 0 !important;
+}
+
+.small-icon-30 {
+    width: clamp(25px, 5vw, 30px);
+    height: clamp(25px, 5vw, 30px);
+}
+
+.small-icon-50-ajustable {
+    width: clamp(37px, 5vw, 50px);
+    height: clamp(37px, 5vw, 50px);
+}
+
+.resize-48px-black {
+    color: black;
+    z-index: 10;
+    font-size: 48px;
+}
+
+.resize-60px-black {
+    color: black;
+    z-index: 10;
+    font-size: 48px;
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* MOSTRAR/ESCONDER CONTEUDO DA CAIXA (COLLAPSE) */
+
+.box-info {
+    display: none;
+}
+
+#box.hidden {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: none;
+    padding: none;
+}
+
+.triangle {
+    cursor: pointer;
+    color: #ffffff;
+    width: 0;
+    height: 0;
+    border-left: clamp(4px, 3vw, 8px) solid transparent;
+    border-right: clamp(4px, 3vw, 8px) solid transparent;
+    border-top: clamp(7px, 6vw, 14px) solid #ffffff;
+    size: clamp(15px, 3vw, 20px);
+    position: relative;
+}
+
+.triangle.closed {
+    border-top: clamp(4px, 6vw, 14px) solid #ffffff;
+}
+
+.triangle.open {
+    border-top: clamp(4px, 6vw, 14px) solid #dcf3ff;
+}
+
+.triangle.rotated {
+    transform: rotate(180deg);
+}
+
+
+/**/
+
+
+/**/
+
+
+/**/
+
+
+/* INTERRUPTOR */
+
+.alternar-botoes {
+    display: flex;
+    justify-content: center;
+    background-color: #dcf3ff;
+    padding: 6px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    width: clamp(250px, 45vw, 350px);
+    margin: 0 auto;
+}
+
+.alternar-botoes button {
+    flex: 1;
+    border: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+    background: none;
+    height: 32px;
+}
+
+.alternar-botoes-box button {
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 30px;
+    background: none;
+    height: 34px;
+}
+
+.alternar-botoes .active {
+    background-color: #18acfe;
+    color: white;
+}
